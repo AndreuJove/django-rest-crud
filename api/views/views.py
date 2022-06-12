@@ -1,9 +1,8 @@
+from api.serializers import AircraftSerializer
+from api.services.aircraft_service import AircraftService
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from .serializers import AircraftSerializer
-from .services.aircraft_service import AircraftService
 
 
 class AircraftView(APIView):
@@ -30,8 +29,12 @@ class AircraftView(APIView):
         if not aircraft_instance:
             return self.return_bad_request(serial_number)
 
-        data = {"manufacturer": request.data.get("manufacturer")}
-        serializer = AircraftSerializer(data=data)
+        data = {
+            "manufacturer": request.data.get("manufacturer"),
+        }
+        serializer = AircraftSerializer(
+            instance=aircraft_instance, data=data, partial=True
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
