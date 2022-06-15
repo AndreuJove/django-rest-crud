@@ -79,3 +79,27 @@ python manage.py test
   ```bash
   curl -H "Content-Type: application/json" -X POST http://127.0.0.1:8000/aircraft/api/ -d '{"serial_number": "1", "manufacturer": "manufacturer_1"}'
   ```
+
+
+---
+
+### ENDPOINTS FLIGHT:
+
+
+
+- #### GET `/api/flight/`
+
+  List all items of the table.
+
+**Querystrings parameters**:
+- departure_airport
+- arrival_airport
+- start_time
+- end_time
+
+  Example:
+
+  ```bash
+  curl -H "Content-Type: application/json" -X GET http://127.0.0.1:8000/api/flight/?departure_airport=dep_airport_1&arrival_airport=%22arrival_airport_1%22&start_time=2022-06-15T20:08:36.091024Z&end_time=2022-06-15T20:13:36.091024Z
+
+  ```

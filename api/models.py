@@ -14,7 +14,9 @@ class Flight(models.Model):
     departure_airport = models.CharField(max_length=200)
     departure_timestamp = models.DateTimeField()
     arrival_airport = models.CharField(max_length=200)
-    arrival_timestamp = models.DateTimeField()
+    arrival_timestamp = models.DateTimeField(
+        null=True,
+    )
     assigned_to = models.ForeignKey(
         Aircraft,
         related_name="flights",
