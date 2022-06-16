@@ -94,7 +94,7 @@ python manage.py test
   curl -H "Content-Type: application/json" -X GET http://127.0.0.1:8000/api/flight/14ca0657-c9db-4ee1-864a-144ed385550a/
   ```
 
-- #### PUT `/api/flight/<serial_number>/`
+- #### PUT `/api/flight/<flight_id>/`
 
   Method to the `arrival_timestamp` and/or the aircraft related to a flight in the database.
 

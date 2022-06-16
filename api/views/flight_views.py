@@ -15,7 +15,7 @@ class FlightView(APIView):
                 {
                     "message": f"Unable to delete the flight with id: {flight_id} because doesn't exist."
                 },
-                status=status.HTTP_200_OK,
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         serializer = FlightSerializer(flight_instance)
@@ -29,7 +29,7 @@ class FlightView(APIView):
                 {
                     "message": f"Unable to delete the flight with id: {flight_id} because doesn't exist."
                 },
-                status=status.HTTP_200_OK,
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         aircraft_serial_number = request.data.get("aircraft_serial_number")
@@ -57,7 +57,7 @@ class FlightView(APIView):
                 serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_200_OK)
 
     def delete(self, request, flight_id, *args, **kwargs):
         flight_instance = FlightService.get_flight_by_id(flight_id)
@@ -67,7 +67,7 @@ class FlightView(APIView):
                 {
                     "message": f"Unable to delete the flight with id: {flight_id} because doesn't exist."
                 },
-                status=status.HTTP_200_OK,
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         flight_instance.delete()

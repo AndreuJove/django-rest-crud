@@ -3,7 +3,6 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 
 
-# Create your tests here.
 class AircraftViewsTestCase(TestCase):
     def setUp(self) -> None:
         self.client = APIClient()
