@@ -4,45 +4,36 @@ from .models import Aircraft, Flight
 
 
 class AircraftSerializer(serializers.ModelSerializer):
+    flights = serializers.StringRelatedField(read_only=True, many=True)
+
     class Meta:
         model = Aircraft
-        fields = [
-            "serial_number",
-            "manufacturer",
-        ]
+        fields = "__all__"
 
 
-class FlightOutputSerializer(serializers.ModelSerializer):
-    aircraft = AircraftSerializer(required=False, read_only=True)
-
+class FlightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flight
-        fields = [
-            "id",
-            "aircraft",
-            "departure_airport",
-            "departure_timestamp",
-            "arrival_airport",
-            "arrival_timestamp",
-        ]
-
-    # def validate(self, data):
-    #     """
-    #     Check that the start is before the stop.
-    #     """
-    #     if data['departure_airport'] > data['arrival_timestamp']:
-    #         raise serializers.ValidationError({"end_date": "finish must occur after start"})
-    #     return data
+        fields = "__all__"
 
 
-class FlightInputSerializer(serializers.ModelSerializer):
-    aircraft = AircraftSerializer(required=False, read_only=True)
+"""
 
-    class Meta:
-        model = Flight
-        fields = [
-            "aircraft",
-            "departure_airport",
-            "departure_timestamp",
-            "arrival_airport",
-        ]
+{"departure_airport": "dep_airport_3",
+"departure_timestamp": "2022-06-16T21:10:36.091024Z",
+"arrival_airport": "arrival_airport_3",
+"aircraft":     {
+        "serial_number": 12323121,
+        "manufacturer": "asdas1asdasa"
+    }
+}
+
+
+
+{"departure_airport": "dep_airport_3",
+"departure_timestamp": "2022-06-16T21:10:36.091024Z",
+"arrival_airport": "arrival_airport_3",
+"aircraft_serial_number": 12323121
+}
+
+"""

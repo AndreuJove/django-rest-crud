@@ -14,7 +14,7 @@ urlpatterns = [
     path("aircraft/", AircraftListView.as_view(), name="aircrafts"),
     path("flight/", FlightListView.as_view(), name="flights"),
     path(
-        "flight/<id>/",
+        "flight/<flight_id>/",
         FlightView.as_view(),
         name="flight",
     ),
